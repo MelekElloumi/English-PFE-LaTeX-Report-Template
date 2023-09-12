@@ -1,0 +1,170 @@
+\documentclass[12pt,a4paper,oneside,english]{book}
+\usepackage[linesnumbered,ruled,vlined,english,onelanguage]{algorithm2e}
+%\usepackage{cite}
+
+\usepackage{minitoc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\usepackage{subfig}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{appendix}
+\usepackage{hyphenat}
+\usepackage{pdfpages}
+\usepackage{lettrine}
+\usepackage{hyperref}
+\usepackage[table]{colortbl}
+\usepackage{float}
+\usepackage{csquotes}
+
+\usepackage[sorting=none,defernumbers=true]{biblatex}
+\addbibresource{references.bib}
+\addbibresource{webography.bib}
+
+\usepackage{array,multirow,makecell}
+\newcolumntype{C}[1]{>{\arraybackslash}p{#1}}
+
+\usepackage{enumitem}
+\setlist{leftmargin=*,itemsep=0pt}
+
+\usepackage{centernot}
+
+\usepackage{quotchap}
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{
+ \chapterheadstartvskip
+ {\size@chapter{\sectfont\raggedright
+ {\chapnumfont
+ \ifnum \c@secnumdepth >\m@ne
+ \if@mainmatter\thechapter
+ \fi\fi
+ \par\nobreak}
+ {\raggedright\advance\leftmargin10em\interlinepenalty\@M #1\par}}
+ \nobreak\chapterheadendvskip}}
+\makeatother
+\renewcommand*{\chapterheadendvskip}{\vspace{1cm}}
+\renewcommand*{\chapterheadstartvskip}{
+  \if@mainmatter
+    \vspace{-100pt}% spacing for \chapter
+  \else
+    \vspace{50pt}% spacing for \chapter*
+  \fi}
+
+
+\usepackage{geometry}
+\geometry{hmargin=2.5cm,vmargin=2.5cm}
+
+\pagestyle{fancyplain}
+\lhead{\fancyplain{}{\nouppercase{\textit{\leftmark}}}}
+\chead{\fancyplain{}{}}
+\rhead{\fancyplain{}{}}
+\lfoot{\fancyplain{}{}}
+\cfoot{\fancyplain{}{}}
+\rfoot{\fancyplain{\thepage}{\thepage}}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\renewcommand{\thesection}{\arabic{section}}
+
+\usepackage{titlesec}
+\titleformat{\paragraph}{\fontsize{11}{10}\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{10pt plus 2pt minus 0pt}{0pt plus 2pt minus 0pt}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\usepackage{array}
+\usepackage{multirow}
+\addto\captionsfrench{\def\tablename{\textsc{Tableau}}}
+
+%\DefineBibliographyStrings{french}{urlseen = {},}
+
+\setlength{\parskip}{8pt}
+\usepackage{setspace}
+
+\usepackage{url}
+
+\usepackage{hyperref}
+% Comment before printing to remove links' colors
+\definecolor{darkblue}{rgb}{0.0, 0.0, 0.5}
+\hypersetup{
+ colorlinks,
+ linktocpage=true,
+ linkcolor={darkblue},
+ citecolor={darkblue},
+ urlcolor={blue}}
+
+\sloppy
+
+\author{You}
+\title{PFE Report}
+
+%--------------------------------------------------------------------------
+%--------------------------------------------------------------------------
+%--------------------------------------------------------------------------
+
+\begin{document}
+
+\pagenumbering{gobble}
+\includepdf[pages=-]{FrontPage.pdf}
+\dominitoc
+\mtcsettitle{minitoc}{Plan}
+\mtcsetrules{*}{off}
+
+\input{pages/dedication.tex}
+\input{pages/acknowledgements.tex}
+
+\input{pages/abstract.tex}
+\input{pages/resume.tex}
+
+% This helps you know how many pages in each chapter to balance your report
+% Don't forget to comment it in the end
+
+\noindent
+Chapter 1 has \the\numexpr\getpagerefnumber{chap:2nd}-\getpagerefnumber{chap:1st}\relax\space pages \newline
+Chapter 2 has \the\numexpr\getpagerefnumber{chap:3rd}-\getpagerefnumber{chap:2nd}\relax\space pages \newline
+Chapter 3 has \the\numexpr\getpagerefnumber{chap:4th}-\getpagerefnumber{chap:3rd}\relax\space pages \newline
+Chapter 4 has \the\numexpr\getpagerefnumber{conclusion}-\getpagerefnumber{chap:4th}\relax\space pages \newline
+
+
+\frontmatter
+\spacing{1}
+\tableofcontents
+\newpage
+
+\listoffigures \mtcaddchapter 
+\newpage 
+
+\listoftables
+\newpage
+
+\spacing{1.4}
+
+\input{pages/acronymes.tex}
+
+\mainmatter
+
+\input{pages/Introduction.tex}
+
+\input{chapters/Chapter 1.tex}
+
+\input{chapters/Chapter 2.tex}
+
+\input{chapters/Chapter 3.tex}
+
+\input{chapters/Chapter 4.tex}
+
+\input{pages/Conclusion.tex}
+
+\printbibliography[title=Bibliography, nottype=online]
+\printbibliography[title=Webography, type=online]
+
+\includepdf[pages=-]{AbstractPage.pdf}
+
+
+\end{document}
